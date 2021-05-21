@@ -47,8 +47,8 @@ export default {
           console.log(track.getCapabilities());
           let cap = track.getCapabilities();
           track.applyConstraints({
-            width: { ideal: cap.width.max },
-            height: { ideal: cap.height.max },
+            width: { ideal: cap.width.max / 2 },
+            height: { ideal: cap.height.max / 2 },
           });
 
           // actual width & height of the camera video

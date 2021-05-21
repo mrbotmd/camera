@@ -22,12 +22,12 @@ export default {
   },
   methods: {
     takePicture() {
-      // let ratio = 9 / 16;
+      let ratio = 9 / 16;
       const picture = document.querySelector(".camera__image");
-      // const picContainer = document.querySelector(".picture");
+      const picContainer = document.querySelector(".picture");
       const feed = document.querySelector(".feed");
-      // picture.width = (window.innerWidth - 200) * ratio;
-      picture.width = window.innerWidth;
+      picture.width = (window.innerWidth - 200) * ratio;
+      // picture.width = window.innerWidth;
       // picture.width = 720;
       picture.height = window.innerHeight;
       // picture.height = 1280;
