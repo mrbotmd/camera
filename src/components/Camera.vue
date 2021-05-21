@@ -89,17 +89,10 @@ export default {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  border: 1px solid blue;
   margin-bottom: 20px;
 }
 .snap {
   font-size: 2rem;
   padding: 20px;
 }
-/* @media only screen and (max-width: 768px) {
-  .snap {
-    font-size: 2rem;
-    padding: 20px;
-  }
-} */
 </style>

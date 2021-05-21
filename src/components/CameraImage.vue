@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="camera__image-container">
     <canvas class="camera__image"></canvas>
   </div>
 </template>
@@ -11,10 +11,8 @@ export default {
 </script>
 
 <style>
-.picture {
-  display: block;
-  width: 100vw;
-  height: 100vh;
+.camera__image-container {
+  margin-bottom: 20px;
   box-sizing: border-box;
 }
 .picture .camera__image {
