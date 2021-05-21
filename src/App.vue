@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <div
+    style=" height: 100vh; widht: 100vw; box-sizing: border-box; display: flex; justify-content: center; align-items: center"
+  >
     <Camera v-show="!picTaken" @takePicture="takePicture" />
     <CameraImage v-show="picTaken" />
   </div>

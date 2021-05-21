@@ -24,14 +24,14 @@ export default {
           audio: false,
           video: {
             width: {
-              min: 640,
-              ideal: 1280,
-              max: 1920,
-            },
-            height: {
               min: 360,
               ideal: 720,
               max: 1080,
+            },
+            height: {
+              min: 640,
+              ideal: 1280,
+              max: 1920,
             },
           },
           facingMode: "user",
@@ -46,9 +46,30 @@ export default {
           let track = stream.getVideoTracks()[0];
           console.log(track.getCapabilities());
           let cap = track.getCapabilities();
+          let supported = navigator.mediaDevices.getSupportedConstraints();
+          console.log(
+            "🚀 ~ file: Camera.vue ~ line 50 ~ navigator.mediaDevices.getUserMedia ~ supported",
+            supported
+          );
+          console.log(
+            "🚀 ~ file: Camera.vue ~ line 49 ~ navigator.mediaDevices.getUserMedia ~ cap",
+            cap
+          );
+          track.resizeMode = "crop-and-scale";
           track.applyConstraints({
-            width: { ideal: cap.width.max / 2 },
-            height: { ideal: cap.height.max / 2 },
+            width: {
+              ideal:
+                cap.width.max / 2 > window.innerWidth
+                  ? cap.width.max
+                  : cap.width.max / 2,
+            },
+            height: {
+              ideal:
+                cap.height.max / 2 > window.innerHeight
+                  ? cap.height.max
+                  : cap.height.max / 2,
+            },
+            aspectRatio: 0.5625,
           });
 
           // actual width & height of the camera video
@@ -71,12 +92,20 @@ export default {
 
 <style scoped>
 .camera {
-  width: 100vw;
-  height: 50vh;
+  /* width: 100vw; */
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 70%;
   box-sizing: border-box;
 }
-.camera.feed {
+.feed {
   width: 100%;
+  height: 100%;
   box-sizing: border-box;
+  border: 1px solid blue;
 }
 </style>
