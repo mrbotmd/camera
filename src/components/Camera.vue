@@ -58,16 +58,10 @@ export default {
           track.resizeMode = "crop-and-scale";
           track.applyConstraints({
             width: {
-              ideal:
-                cap.width.max / 2 > window.innerWidth
-                  ? cap.width.max
-                  : cap.width.max / 2,
+              ideal: cap.width.max,
             },
             height: {
-              ideal:
-                cap.height.max / 2 > window.innerHeight
-                  ? cap.height.max
-                  : cap.height.max / 2,
+              ideal: cap.height.max,
             },
             aspectRatio: 0.5625,
           });
