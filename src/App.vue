@@ -1,10 +1,22 @@
 <template>
-  <div
-    style=" height: 100vh; widht: 100vw; box-sizing: border-box; display: flex; justify-content: center; align-items: center"
-  >
-    <Camera v-show="!picTaken" @takePicture="takePicture" />
-    <CameraImage v-show="picTaken" />
-  </div>
+  <el-row type="flex" justify="center" align="center">
+    <el-col
+      :xs="24"
+      :sm="18"
+      :md="14"
+      :lg="8"
+      style=" height: 100vh; box-sizing: border-box; display: flex; justify-content: center; align-items: center"
+    >
+      <Camera v-show="!picTaken" @takePicture="takePicture" />
+      <div v-show="picTaken" style="display: flex">
+        <CameraImage />
+        <div style="display: flex; flex-direction: column">
+          <button>save</button>
+          <button>cancel</button>
+        </div>
+      </div>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
@@ -28,10 +40,11 @@ export default {
       const picture = document.querySelector(".camera__image");
       // const picContainer = document.querySelector(".picture");
       const feed = document.querySelector(".feed");
-      picture.width = (window.innerWidth - 200) * ratio;
+      picture.width = window.innerWidth < 1280 ? window.innerWidth - 100 : 337;
       // picture.width = window.innerWidth;
       // picture.width = 720;
-      picture.height = window.innerHeight;
+      picture.height =
+        window.innerWidth < 1280 ? window.innerHeight - 100 : 600;
       // picture.height = 1280;
       console.log(picture.width);
       const ctx = picture.getContext("2d");

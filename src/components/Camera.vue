@@ -1,8 +1,14 @@
 <template>
-  <div class="camera">
-    <button class="snap" @click="$emit(`takePicture`)">Сфотографировать</button>
+  <el-row class="camera">
     <video autoplay class="feed">dead</video>
-  </div>
+    <el-button
+      type="primary"
+      circle
+      icon="el-icon-camera"
+      class="snap"
+      @click="$emit(`takePicture`)"
+    />
+  </el-row>
 </template>
 
 <script>
@@ -37,24 +43,15 @@ export default {
           facingMode: "user",
         };
 
-        console.log(navigator.mediaDevices);
         navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
           const videoPlayer = document.querySelector(".feed");
           videoPlayer.srcObject = stream;
           videoPlayer.play();
-          let stream_settings = stream.getVideoTracks()[0].getSettings();
+
           let track = stream.getVideoTracks()[0];
-          console.log(track.getCapabilities());
+
           let cap = track.getCapabilities();
-          let supported = navigator.mediaDevices.getSupportedConstraints();
-          console.log(
-            "🚀 ~ file: Camera.vue ~ line 50 ~ navigator.mediaDevices.getUserMedia ~ supported",
-            supported
-          );
-          console.log(
-            "🚀 ~ file: Camera.vue ~ line 49 ~ navigator.mediaDevices.getUserMedia ~ cap",
-            cap
-          );
+
           track.resizeMode = "crop-and-scale";
           track.applyConstraints({
             width: {
@@ -65,13 +62,6 @@ export default {
             },
             aspectRatio: 0.5625,
           });
-
-          // actual width & height of the camera video
-          let stream_width = stream_settings.width;
-          let stream_height = stream_settings.height;
-
-          console.log("Width: " + stream_width + "px");
-          console.log("Height: " + stream_height + "px");
         });
       } else {
         this.errorMessage = "Нет устройств";
@@ -86,7 +76,6 @@ export default {
 
 <style scoped>
 .camera {
-  /* width: 100vw; */
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -101,5 +90,16 @@ export default {
   height: 100%;
   box-sizing: border-box;
   border: 1px solid blue;
+  margin-bottom: 20px;
 }
+.snap {
+  font-size: 2rem;
+  padding: 20px;
+}
+/* @media only screen and (max-width: 768px) {
+  .snap {
+    font-size: 2rem;
+    padding: 20px;
+  }
+} */
 </style>
