@@ -15,8 +15,8 @@ const flow = require("rollup-plugin-flow");
 //const ElementUI = require("element-ui");
 
 module.exports = {
-  input: "src/documents.js",
-  output: "dist/documents.bundle.js",
+  input: "src/main.js",
+  output: "public/assets/app.js",
   namespace: "BX.Mfo",
   plugins: {
     babel: {
